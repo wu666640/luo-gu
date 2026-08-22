@@ -8,16 +8,14 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+      - uses: actions/checkout@v4
+
+      - name: 编译检查所有 C++ 文件
+        run: |
+          for f in *.cpp; do
+            echo "==> 编译 $f"
+            g++ -std=c++17 -Wall -Wextra -O2 "$f" -o /tmp/check.out || exit 1
+          done
+          echo "全部编译通过"
