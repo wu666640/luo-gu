@@ -1,28 +1,42 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
+using ll =long long;
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
 
-const int N = 100100;
-vector<int> g[N];   // 邻接表
-bool vis[N];
+    int n,m;
+    cin>>n>>m;
 
-void dfs(int u) {
-    vis[u] = true;
-    cout << u << ' ';            // 访问节点
-    for (int v : g[u]) {
-        if (!vis[v]) dfs(v);
+    vector<vector<ll>>g(n+1);
+
+    for(int i=0;i<m;i++){
+        int x,y;
+        cin>>x>>y;
+        g[x].push_back(y);
+        g[y].push_back(x);
     }
-}
 
-int main() {
-    int n, m;
-    cin >> n >> m;               // n 个点，m 条边
-    for (int i = 0; i < m; i++) {
-        int u, v;
-        cin >> u >> v;
-        g[u].push_back(v);
-        g[v].push_back(u);       // 无向图加两条
+    vector<bool>vis(n+1);
+    ll ans=0;
+    for(int i=1;i<=n;i++){
+        if(vis[i]) continue;
+        ans++;
+        vector<ll>stack;
+        stack.push_back(i);
+        vis[i] = true;
+        while(!stack.empty()){
+            int u = stack.back();
+            stack.pop_back();
+            for(int v:g[u]){
+                if(!vis[v]){
+                    vis[v] = true;
+                    stack.push_back(v);
+                }
+            }
+        }
     }
-    for (int i = 1; i <= n; i++)
-        if (!vis[i]) dfs(i);     // 处理非连通图
+
+    cout<<ans<<'\n';
     return 0;
 }
