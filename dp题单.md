@@ -5,7 +5,7 @@
 
 ## 第 1 关：线性 DP 打基础
 
-- [ ] [P1216 [USACO1.5] 数字三角形](https://www.luogu.com.cn/problem/P1216) — DP 入门第一题，二维递推
+- [x] [P1216 [USACO1.5] 数字三角形](https://www.luogu.com.cn/problem/P1216) — DP 入门第一题，二维递推
 - [ ] [P1115 最大子段和](https://www.luogu.com.cn/problem/P1115) — 一维线性 DP，感受「选 or 不选」
 - [ ] [P1002 [NOIP2002 普及组] 过河卒](https://www.luogu.com.cn/problem/P1002) — 棋盘递推，注意马的控制点
 - [ ] [P1025 [NOIP2001 提高组] 数的划分](https://www.luogu.com.cn/problem/P1025) — 计数 DP
