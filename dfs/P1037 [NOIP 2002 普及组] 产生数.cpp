@@ -1,3 +1,4 @@
+//https://www.luogu.com.cn/problem/P1037
 #include<bits/stdc++.h>
 using namespace std;
 using ll = long long;
@@ -50,8 +51,8 @@ int main(){
         cnt[i] = dfs(i);
     }
     string ans = "1";
-    for(int i=0;i<10;i++){
-        ans = mul(ans,cnt[i]);
+    for(char c : n){
+        ans = mul(ans, cnt[c-'0']);
     }
     cout<<ans<<endl;
     return 0;

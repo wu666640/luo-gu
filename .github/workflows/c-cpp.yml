@@ -14,8 +14,12 @@ jobs:
 
       - name: 编译检查所有 C++ 文件
         run: |
-          for f in *.cpp; do
+          count=0
+          # 递归查找所有子目录下的 .cpp（shopt globstar 开启 ** 递归匹配）
+          shopt -s globstar nullglob
+          for f in **/*.cpp; do
             echo "==> 编译 $f"
             g++ -std=c++17 -Wall -Wextra -O2 "$f" -o /tmp/check.out || exit 1
+            count=$((count + 1))
           done
-          echo "全部编译通过"
+          echo "共编译通过 $count 个文件"

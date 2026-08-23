@@ -1,0 +1,12 @@
+# 编译产物
+*.exe
+*.o
+*.out
+main
+
+# CPH 插件缓存
+.cph/
+
+# 系统文件
+Thumbs.db
+.DS_Store

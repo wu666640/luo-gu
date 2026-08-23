@@ -1,0 +1,40 @@
+name: Auto Update README
+
+# push 到 main 且涉及代码/生成脚本变化时，自动重跑 gen-readme.js 并提交更新的 README
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - '**/*.cpp'          # 新增/修改题目代码时触发
+      - 'gen-readme.js'     # 生成器本身变化时触发
+      - '.github/workflows/update-readme.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 运行 README 生成器
+        run: node gen-readme.js
+
+      - name: 有变化则提交
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          if git diff --cached --quiet; then
+            echo "README 无变化，跳过提交"
+          else
+            git commit -m "docs: 自动更新题解列表 [skip ci]"
+            git push
+            echo "已提交并推送更新的 README"
+          fi
