@@ -3,9 +3,11 @@
  * gen-readme.js — 洛谷刷题仓库 README 自动生成器
  *
  * 用法：在仓库根目录运行  node gen-readme.js
- * 功能：扫描所有分类目录下的 .cpp 文件，自动解析题号/题名/知识点，
- *       重新生成 README 的「题解列表」表格。
- * 每次新增/删除题目后运行一次即可，无需手动改表格。
+ * 功能：
+ *   1. 自动扫描所有分类目录下的 .cpp 文件，解析题号/题名/知识点
+ *   2. 自动生成「仓库结构」（按实际目录 + 每类题数）
+ *   3. 自动生成「题解列表」表格
+ * 每次新增/删除题目或新建分类文件夹后运行一次即可，无需手动改任何章节。
  */
 const fs = require('fs');
 const path = require('path');
@@ -69,8 +71,36 @@ for (const f of files) {
 
 const rows = [...byPid.values()].sort((a, b) => parseInt(a.pid.slice(1), 10) - parseInt(b.pid.slice(1), 10));
 
-// ── 4. 生成表格 ───────────────────────────────────────────────────
-const lines = [
+// ── 4. 统计各分类目录（自动生成「仓库结构」）────────────────────
+const catCount = new Map();   // 分类目录名 -> 该目录下 .cpp 文件数
+for (const f of files) {
+  const top = f.cat.split('/')[0];
+  if (top) catCount.set(top, (catCount.get(top) || 0) + 1);
+}
+const cats = [...catCount.keys()].sort();
+
+const structLines = [
+  '## 仓库结构',
+  '',
+  '<!-- 本结构由 gen-readme.js 自动生成，请勿手动编辑；新建分类文件夹后运行 `node gen-readme.js` -->',
+  '',
+  '```',
+  '.',
+];
+for (const c of cats) {
+  const n = catCount.get(c);
+  const label = CAT_LABEL[c] || c;
+  const pad = ' '.repeat(Math.max(1, 12 - c.length));  // 对齐到第 12 列（中文按 2 宽估算）
+  structLines.push(`├── ${c}/${pad}# ${label}相关题解（${n} 题）`);
+}
+structLines.push('├── gen-readme.js # README 自动生成脚本（新增题目后运行）');
+structLines.push('└── .github/      # CI 工作流（编译检查 + 自动更新 README）');
+structLines.push('```');
+structLines.push('');
+const structSection = structLines.join('\n');
+
+// ── 5. 生成「题解列表」表格 ───────────────────────────────────────
+const tableLines = [
   '## 题解列表',
   '',
   '<!-- 本表由 gen-readme.js 自动生成，请勿手动编辑；新增题目后运行 `node gen-readme.js` -->',
@@ -85,8 +115,8 @@ for (const row of rows) {
   const link = `[${title}](https://www.luogu.com.cn/problem/${pid})`;
 
   // 知识点：多版本取并集
-  const cats = [...new Set(row.versions.map((v) => v.cat))].filter(Boolean);
-  const catText = cats.map((c) => CAT_LABEL[c] || c).join(' / ') || '—';
+  const cats2 = [...new Set(row.versions.map((v) => v.cat))].filter(Boolean);
+  const catText = cats2.map((c) => CAT_LABEL[c] || c).join(' / ') || '—';
 
   // 题解：多版本用「标签」区分，单版本直接用文件名
   const sols = row.versions.map((v) => {
@@ -95,31 +125,46 @@ for (const row of rows) {
   });
   const solText = sols.join(' · ');
 
-  lines.push(`| ${link} | ${catText} | ${solText} | ✅ 已完成 |`);
+  tableLines.push(`| ${link} | ${catText} | ${solText} | ✅ 已完成 |`);
 }
 
-const tableSection = lines.join('\n') + '\n';
+const tableSection = tableLines.join('\n') + '\n';
 
-// ── 5. 替换 README 中「题解列表」章节 ─────────────────────────────
+// ── 6. 拼接并写入 README ─────────────────────────────────────────
 let content = fs.readFileSync(README, 'utf8');
-const marker = '## 题解列表';
-const idx = content.indexOf(marker);
-if (idx === -1) {
+
+// 6a. 替换「仓库结构」章节（## 仓库结构 到下一个 ## 之间）
+const structMarker = '## 仓库结构';
+let structReplaced = false;
+const structIdx = content.indexOf(structMarker);
+if (structIdx !== -1) {
+  const tailStart = content.indexOf('\n## ', structIdx + structMarker.length);
+  const tail = tailStart === -1 ? '' : content.slice(tailStart + 1);
+  content = content.slice(0, structIdx) + structSection + '\n\n' + tail;
+  structReplaced = true;
+}
+
+// 6b. 替换「题解列表」章节
+const tableMarker = '## 题解列表';
+const tableIdx = content.indexOf(tableMarker);
+if (tableIdx === -1) {
   console.error('❌ README.md 中未找到「## 题解列表」章节，请检查文件');
   process.exit(1);
 }
-const head = content.slice(0, idx);
-const tailStart = content.indexOf('\n## ', idx + marker.length);
-const tail = tailStart === -1 ? '' : content.slice(tailStart + 1); // 去掉开头的换行，统一由下方补
-const newContent = head + tableSection + '\n' + tail;
+const head2 = content.slice(0, tableIdx);
+const tailStart2 = content.indexOf('\n## ', tableIdx + tableMarker.length);
+const tail2 = tailStart2 === -1 ? '' : content.slice(tailStart2 + 1);
+content = head2 + tableSection + '\n' + tail2;
 
-fs.writeFileSync(README, newContent, 'utf8');
+fs.writeFileSync(README, content, 'utf8');
 
-// ── 6. 输出摘要 ───────────────────────────────────────────────────
+// ── 7. 输出摘要 ───────────────────────────────────────────────────
 let total = 0;
 for (const row of rows) total += row.versions.length;
 console.log(`✅ README 已更新`);
+console.log(`   分类目录: ${cats.join(', ')}`);
 console.log(`   题目数: ${rows.length}，文件数: ${total}`);
+if (!structReplaced) console.warn('   ⚠️ 未找到「## 仓库结构」章节，仅更新了题解列表');
 for (const row of rows) {
   console.log(`   ${row.pid}  ${row.title}  (${row.versions.map((v) => v.rel).join(', ')})`);
 }
