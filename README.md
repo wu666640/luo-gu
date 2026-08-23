@@ -21,6 +21,7 @@ OI / ACM / XCPC 学习与刷题仓库，全部使用 C++ 编写，按知识点�
 
 | 题目 | 知识点 | 题解 | 状态 |
 | --- | --- | --- | --- |
+| [P1004 [NOIP 2000 提高组] 方格取数](https://www.luogu.com.cn/problem/P1004) | DP | [DP版](dp/P1004%20%5BNOIP%202000%20%E6%8F%90%E9%AB%98%E7%BB%84%5D%20%E6%96%B9%E6%A0%BC%E5%8F%96%E6%95%B0.cpp) | ✅ 已完成 |
 | [P1037 [NOIP 2002 普及组] 产生数](https://www.luogu.com.cn/problem/P1037) | DFS | [DFS版](dfs/P1037%20%5BNOIP%202002%20%E6%99%AE%E5%8F%8A%E7%BB%84%5D%20%E4%BA%A7%E7%94%9F%E6%95%B0.cpp) | ✅ 已完成 |
 | [P1162 填涂颜色](https://www.luogu.com.cn/problem/P1162) | DFS | [DFS版](dfs/P1162%20%E5%A1%AB%E6%B6%82%E9%A2%9C%E8%89%B2.cpp) | ✅ 已完成 |
 | [P2097 资料分发 1](https://www.luogu.com.cn/problem/P2097) | BFS / 并查集 | [BFS版](bfs/P2097%20%E8%B5%84%E6%96%99%E5%88%86%E5%8F%91%201.cpp) · [并查集版](%E5%B9%B6%E6%9F%A5%E9%9B%86/P2097.cpp) | ✅ 已完成 |
