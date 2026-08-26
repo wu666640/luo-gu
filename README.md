@@ -14,7 +14,7 @@ OI / ACM / XCPC 学习与刷题仓库，全部使用 C++ 编写，按知识点�
 .
 ├── bfs/         # BFS相关题解（1 题）
 ├── dfs/         # DFS相关题解（2 题）
-├── dp/          # DP相关题解（3 题）
+├── dp/          # DP相关题解（4 题）
 ├── 并查集/         # 并查集相关题解（1 题）
 ├── gen-readme.js # README 自动生成脚本（新增题目后运行）
 └── .github/      # CI 工作流（编译检查 + 自动更新 README）
@@ -27,6 +27,7 @@ OI / ACM / XCPC 学习与刷题仓库，全部使用 C++ 编写，按知识点�
 
 | 题目 | 知识点 | 题解 | 状态 |
 | --- | --- | --- | --- |
+| [2025 #2] 游戏](https://www.luogu.com.cn/problem/2025 #2] 游戏) | dp/P11430 [COCI 2024 | [dp/P11430 [COCI 2024版](dp/P11430%20%5BCOCI%202024/2025%20#2%5D%20%E6%B8%B8%E6%88%8F.cpp) | ✅ 已完成 |
 | [P121 数字三角形Number Triangles](https://www.luogu.com.cn/problem/P121) | DP | [DP版](dp/P121%20%E6%95%B0%E5%AD%97%E4%B8%89%E8%A7%92%E5%BD%A2Number%20Triangles.cpp) | ✅ 已完成 |
 | [P1004 [NOIP 2000 提高组] 方格取数](https://www.luogu.com.cn/problem/P1004) | DP | [DP版](dp/P1004%20%5BNOIP%202000%20%E6%8F%90%E9%AB%98%E7%BB%84%5D%20%E6%96%B9%E6%A0%BC%E5%8F%96%E6%95%B0.cpp) | ✅ 已完成 |
 | [P1037 [NOIP 2002 普及组] 产生数](https://www.luogu.com.cn/problem/P1037) | DFS | [DFS版](dfs/P1037%20%5BNOIP%202002%20%E6%99%AE%E5%8F%8A%E7%BB%84%5D%20%E4%BA%A7%E7%94%9F%E6%95%B0.cpp) | ✅ 已完成 |
