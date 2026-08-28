@@ -7,6 +7,9 @@ main
 # CPH 插件缓存
 .cph/
 
+# 生成的打印文档（可再生成，不入库）
+板子/模板合集.html
+
 # 系统文件
 Thumbs.db
 .DS_Store
