@@ -14,7 +14,7 @@ const path = require('path');
 
 const ROOT = __dirname;
 const README = path.join(ROOT, 'README.md');
-const SKIP_DIRS = new Set(['.git', '.github', '.cph', 'node_modules', 'assets']);
+const SKIP_DIRS = new Set(['.git', '.github', '.cph', 'node_modules', 'assets', '板子']);
 
 /** 目录名 → 知识点显示名 */
 const CAT_LABEL = {

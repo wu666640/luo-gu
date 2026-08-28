@@ -15,6 +15,7 @@ OI / ACM / XCPC 学习与刷题仓库，全部使用 C++ 编写，按知识点�
 ├── bfs/         # BFS相关题解（1 题）
 ├── dfs/         # DFS相关题解（3 题）
 ├── dp/          # DP相关题解（5 题）
+├── 图论/          # 图论相关题解（2 题）
 ├── 并查集/         # 并查集相关题解（1 题）
 ├── gen-readme.js # README 自动生成脚本（新增题目后运行）
 └── .github/      # CI 工作流（编译检查 + 自动更新 README）
@@ -32,9 +33,20 @@ OI / ACM / XCPC 学习与刷题仓库，全部使用 C++ 编写，按知识点�
 | [P1037 [NOIP 2002 普及组] 产生数](https://www.luogu.com.cn/problem/P1037) | DFS | [DFS版](dfs/P1037%20%5BNOIP%202002%20%E6%99%AE%E5%8F%8A%E7%BB%84%5D%20%E4%BA%A7%E7%94%9F%E6%95%B0.cpp) | ✅ 已完成 |
 | [P1115 最大子段和](https://www.luogu.com.cn/problem/P1115) | DP | [DP版](dp/P1115%20%E6%9C%80%E5%A4%A7%E5%AD%90%E6%AE%B5%E5%92%8C.cpp) | ✅ 已完成 |
 | [P1162 填涂颜色](https://www.luogu.com.cn/problem/P1162) | DFS | [DFS版](dfs/P1162%20%E5%A1%AB%E6%B6%82%E9%A2%9C%E8%89%B2.cpp) | ✅ 已完成 |
+| [P1396 营救](https://www.luogu.com.cn/problem/P1396) | 图论 | [图论版](%E5%9B%BE%E8%AE%BA/P1396%20%E8%90%A5%E6%95%91.cpp) | ✅ 已完成 |
 | [P1433 吃奶酪](https://www.luogu.com.cn/problem/P1433) | DFS / dp/状压dp | [DFS版](dfs/P1433%20%E5%90%83%E5%A5%B6%E9%85%AA.cpp) · [dp/状压dp版](dp/%E7%8A%B6%E5%8E%8Bdp/P1433%20%E5%90%83%E5%A5%B6%E9%85%AA.cpp) | ✅ 已完成 |
 | [P2097 资料分发 1](https://www.luogu.com.cn/problem/P2097) | BFS / 并查集 | [BFS版](bfs/P2097%20%E8%B5%84%E6%96%99%E5%88%86%E5%8F%91%201.cpp) · [并查集版](%E5%B9%B6%E6%9F%A5%E9%9B%86/P2097.cpp) | ✅ 已完成 |
+| [P3879 [TJOI2010] 阅读理解](https://www.luogu.com.cn/problem/P3879) | 图论/字典树 | [图论/字典树版](%E5%9B%BE%E8%AE%BA/%E5%AD%97%E5%85%B8%E6%A0%91/P3879%20%5BTJOI2010%5D%20%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3.cpp) | ✅ 已完成 |
 | [P11430 [COCI 20242025 #2] 游戏](https://www.luogu.com.cn/problem/P11430) | DP | [DP版](dp/P11430%20%5BCOCI%2020242025%20#2%5D%20%E6%B8%B8%E6%88%8F.cpp) | ✅ 已完成 |
+
+## 板子（算法模板）
+
+> 见 **[板子/README.md](板子/README.md)**（本仓库自带，不进入上方题解列表）。按知识点整理的可复用 C++17 模板，含基础/数学/数据结构/图论/字符串/搜索/DP/杂项，每个文件夹一个 `.cpp`，均带演示 `main()` 且可独立编译。
+
+```bash
+# 以线段树为例：编译 + 运行看演示
+g++ -std=c++17 -O2 "板子/数据结构/线段树.cpp" -o main && ./main
+```
 
 ## 本地编译运行
 
