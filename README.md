@@ -15,7 +15,7 @@ OI / ACM / XCPC 学习与刷题仓库，全部使用 C++ 编写，按知识点�
 ├── bfs/         # BFS相关题解（1 题）
 ├── dfs/         # DFS相关题解（3 题）
 ├── dp/          # DP相关题解（5 题）
-├── 图论/          # 图论相关题解（2 题）
+├── 图论/          # 图论相关题解（5 题）
 ├── 并查集/         # 并查集相关题解（1 题）
 ├── gen-readme.js # README 自动生成脚本（新增题目后运行）
 └── .github/      # CI 工作流（编译检查 + 自动更新 README）
@@ -37,7 +37,10 @@ OI / ACM / XCPC 学习与刷题仓库，全部使用 C++ 编写，按知识点�
 | [P1433 吃奶酪](https://www.luogu.com.cn/problem/P1433) | DFS / dp/状压dp | [DFS版](dfs/P1433%20%E5%90%83%E5%A5%B6%E9%85%AA.cpp) · [dp/状压dp版](dp/%E7%8A%B6%E5%8E%8Bdp/P1433%20%E5%90%83%E5%A5%B6%E9%85%AA.cpp) | ✅ 已完成 |
 | [P2097 资料分发 1](https://www.luogu.com.cn/problem/P2097) | BFS / 并查集 | [BFS版](bfs/P2097%20%E8%B5%84%E6%96%99%E5%88%86%E5%8F%91%201.cpp) · [并查集版](%E5%B9%B6%E6%9F%A5%E9%9B%86/P2097.cpp) | ✅ 已完成 |
 | [P3879 [TJOI2010] 阅读理解](https://www.luogu.com.cn/problem/P3879) | 图论/字典树 | [图论/字典树版](%E5%9B%BE%E8%AE%BA/%E5%AD%97%E5%85%B8%E6%A0%91/P3879%20%5BTJOI2010%5D%20%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3.cpp) | ✅ 已完成 |
+| [P3916 图的遍历](https://www.luogu.com.cn/problem/P3916) | 图论 | [图论版](%E5%9B%BE%E8%AE%BA/P3916%20%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86.cpp) | ✅ 已完成 |
+| [P5318 查找文献(洛谷【深基18.例3】)](https://www.luogu.com.cn/problem/P5318) | 图论 | [图论版](%E5%9B%BE%E8%AE%BA/P5318%20%E6%9F%A5%E6%89%BE%E6%96%87%E7%8C%AE(%E6%B4%9B%E8%B0%B7%E3%80%90%E6%B7%B1%E5%9F%BA18.%E4%BE%8B3%E3%80%91).cpp) | ✅ 已完成 |
 | [P11430 [COCI 20242025 #2] 游戏](https://www.luogu.com.cn/problem/P11430) | DP | [DP版](dp/P11430%20%5BCOCI%2020242025%20#2%5D%20%E6%B8%B8%E6%88%8F.cpp) | ✅ 已完成 |
+| [H](https://www.luogu.com.cn/problem/H) | 图论/字典树 | [图论/字典树版](%E5%9B%BE%E8%AE%BA/%E5%AD%97%E5%85%B8%E6%A0%91/H.cpp) | ✅ 已完成 |
 
 ## 板子（算法模板）
 
