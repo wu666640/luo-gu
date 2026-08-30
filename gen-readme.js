@@ -7,6 +7,7 @@
  *   1. 自动扫描所有分类目录下的 .cpp 文件，解析题号/题名/知识点
  *   2. 自动生成「仓库结构」（按实际目录 + 每类题数）
  *   3. 自动生成「题解列表」表格
+ *   4. 自动生成「仓库统计」（题目数/分类数/题解文件数/板子模板数）
  * 每次新增/删除题目或新建分类文件夹后运行一次即可，无需手动改任何章节。
  */
 const fs = require('fs');
@@ -47,6 +48,8 @@ function walk(dir, rel = '') {
   }
 }
 walk(ROOT);
+// 只把「P题号」开头的 .cpp 当作正式题目；其它（如 H.cpp、辅助代码）不计入题目列表
+const problemFiles = files.filter((f) => /^P\d+/.test(path.basename(f.rel, '.cpp')));
 
 // ── 2. 解析题号 / 题名 ────────────────────────────────────────────
 function parseInfo(file) {
@@ -61,7 +64,7 @@ function parseInfo(file) {
 
 // ── 3. 按题号聚合（同一题可能有多版本：DFS版 / 并查集版）─────────
 const byPid = new Map();
-for (const f of files) {
+for (const f of problemFiles) {
   const { pid, title, base } = parseInfo(f);
   if (!byPid.has(pid)) byPid.set(pid, { pid, title, versions: [] });
   const item = byPid.get(pid);
@@ -70,10 +73,11 @@ for (const f of files) {
 }
 
 const rows = [...byPid.values()].sort((a, b) => parseInt(a.pid.slice(1), 10) - parseInt(b.pid.slice(1), 10));
+const total = rows.reduce((a, r) => a + r.versions.length, 0);
 
 // ── 4. 统计各分类目录（自动生成「仓库结构」）────────────────────
 const catCount = new Map();   // 分类目录名 -> 该目录下 .cpp 文件数
-for (const f of files) {
+for (const f of problemFiles) {
   const top = f.cat.split('/')[0];
   if (top) catCount.set(top, (catCount.get(top) || 0) + 1);
 }
@@ -130,10 +134,38 @@ for (const row of rows) {
 
 const tableSection = tableLines.join('\n') + '\n';
 
+// ── 5b. 统计板子模板数（板子/ 已被 SKIP，单独统计）──────────────
+function countCpp(dir) {
+  let c = 0;
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (e.isDirectory()) c += countCpp(path.join(dir, e.name));
+    else if (e.name.endsWith('.cpp')) c++;
+  }
+  return c;
+}
+const boardDir = path.join(ROOT, '板子');
+const boardCount = fs.existsSync(boardDir) ? countCpp(boardDir) : 0;
+
+// ── 5c. 生成「仓库统计」章节 ─────────────────────────────────────
+const statLines = [
+  '## 📊 仓库统计',
+  '',
+  '<!-- 本统计由 gen-readme.js 自动生成，请勿手动编辑 -->',
+  '',
+  '| 指标 | 数值 |',
+  '| --- | --- |',
+  `| 已收录题目 | ${rows.length} |`,
+  `| 分类数 | ${cats.length} |`,
+  `| 题解文件数 | ${total} |`,
+  `| 板子模板数 | ${boardCount} |`,
+  '',
+];
+const statSection = statLines.join('\n');
+
 // ── 6. 拼接并写入 README ─────────────────────────────────────────
 let content = fs.readFileSync(README, 'utf8');
 
-// 6a. 替换「仓库结构」章节（## 仓库结构 到下一个 ## 之间）
+// 6a. 替换「仓库结构」章节
 const structMarker = '## 仓库结构';
 let structReplaced = false;
 const structIdx = content.indexOf(structMarker);
@@ -156,14 +188,21 @@ const tailStart2 = content.indexOf('\n## ', tableIdx + tableMarker.length);
 const tail2 = tailStart2 === -1 ? '' : content.slice(tailStart2 + 1);
 content = head2 + tableSection + '\n' + tail2;
 
+// 6c. 替换「仓库统计」章节
+const statMarker = '## 📊 仓库统计';
+const statIdx = content.indexOf(statMarker);
+if (statIdx !== -1) {
+  const tailStart3 = content.indexOf('\n## ', statIdx + statMarker.length);
+  const tail3 = tailStart3 === -1 ? '' : content.slice(tailStart3 + 1);
+  content = content.slice(0, statIdx) + statSection + '\n\n' + tail3;
+}
+
 fs.writeFileSync(README, content, 'utf8');
 
 // ── 7. 输出摘要 ───────────────────────────────────────────────────
-let total = 0;
-for (const row of rows) total += row.versions.length;
 console.log(`✅ README 已更新`);
 console.log(`   分类目录: ${cats.join(', ')}`);
-console.log(`   题目数: ${rows.length}，文件数: ${total}`);
+console.log(`   题目数: ${rows.length}，文件数: ${total}，板子: ${boardCount}`);
 if (!structReplaced) console.warn('   ⚠️ 未找到「## 仓库结构」章节，仅更新了题解列表');
 for (const row of rows) {
   console.log(`   ${row.pid}  ${row.title}  (${row.versions.map((v) => v.rel).join(', ')})`);

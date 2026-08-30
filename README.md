@@ -1,10 +1,36 @@
 # luo-gu 洛谷刷题记录
 
-OI / ACM / XCPC 学习与刷题仓库，全部使用 C++ 编写，按知识点分类整理，每道题附完整代码与注释。
+> OI / ACM / XCPC 学习与刷题仓库，全部使用 **C++17** 编写，按知识点分类整理，每道题附完整代码与注释。仓库结构与题解列表由脚本自动生成、GitHub Actions 自动维护。
 
-> 📖 日常操作（加题、提交、CI 说明）见 **[操作指南.md](操作指南.md)** —— 该文档由 Agent 持续维护，新学的操作会自动追加，直接照做即可
->
-> 🎯 DP 刷题进度见 **[dp题单.md](dp题单.md)**（待完成计划）
+<p>
+  <img src="https://github.com/wu666640/luo-gu/actions/workflows/c-cpp.yml/badge.svg" alt="C++ CI">
+  <img src="https://img.shields.io/github/stars/wu666640/luo-gu?label=stars&logo=github" alt="stars">
+  <img src="https://img.shields.io/github/last-commit/wu666640/luo-gu?label=last%20commit&logo=github" alt="last commit">
+</p>
+
+## 📚 文档导航
+
+| 文档 | 用途 |
+| --- | --- |
+| [操作指南.md](操作指南.md) | 加题 / 提交 / CI 的日常操作 |
+| [dp题单.md](dp题单.md) | DP 刷题进度（待完成计划） |
+| [图论建图打卡.md](图论建图打卡.md) | 图论建模「四问」打卡 |
+| [板子/README.md](板子/README.md) | 可复用 C++17 算法模板库（考场速查） |
+| [百度之星冲刺/README.md](百度之星冲刺/README.md) | 百度之星预选赛冲刺计划 |
+
+> 📓 算法学习笔记在仓库外 `../ACM学习/`（图论学习与建图、CF 刷题路线、百度之星考点速查等）。
+
+## 📊 仓库统计
+
+<!-- 本统计由 gen-readme.js 自动生成，请勿手动编辑 -->
+
+| 指标 | 数值 |
+| --- | --- |
+| 已收录题目 | 12 |
+| 分类数 | 5 |
+| 题解文件数 | 14 |
+| 板子模板数 | 43 |
+
 
 ## 仓库结构
 
@@ -15,7 +41,7 @@ OI / ACM / XCPC 学习与刷题仓库，全部使用 C++ 编写，按知识点�
 ├── bfs/         # BFS相关题解（1 题）
 ├── dfs/         # DFS相关题解（3 题）
 ├── dp/          # DP相关题解（5 题）
-├── 图论/          # 图论相关题解（5 题）
+├── 图论/          # 图论相关题解（4 题）
 ├── 并查集/         # 并查集相关题解（1 题）
 ├── gen-readme.js # README 自动生成脚本（新增题目后运行）
 └── .github/      # CI 工作流（编译检查 + 自动更新 README）
@@ -40,9 +66,8 @@ OI / ACM / XCPC 学习与刷题仓库，全部使用 C++ 编写，按知识点�
 | [P3916 图的遍历](https://www.luogu.com.cn/problem/P3916) | 图论 | [图论版](%E5%9B%BE%E8%AE%BA/P3916%20%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86.cpp) | ✅ 已完成 |
 | [P5318 查找文献(洛谷【深基18.例3】)](https://www.luogu.com.cn/problem/P5318) | 图论 | [图论版](%E5%9B%BE%E8%AE%BA/P5318%20%E6%9F%A5%E6%89%BE%E6%96%87%E7%8C%AE(%E6%B4%9B%E8%B0%B7%E3%80%90%E6%B7%B1%E5%9F%BA18.%E4%BE%8B3%E3%80%91).cpp) | ✅ 已完成 |
 | [P11430 [COCI 20242025 #2] 游戏](https://www.luogu.com.cn/problem/P11430) | DP | [DP版](dp/P11430%20%5BCOCI%2020242025%20#2%5D%20%E6%B8%B8%E6%88%8F.cpp) | ✅ 已完成 |
-| [H](https://www.luogu.com.cn/problem/H) | 图论/字典树 | [图论/字典树版](%E5%9B%BE%E8%AE%BA/%E5%AD%97%E5%85%B8%E6%A0%91/H.cpp) | ✅ 已完成 |
 
-## 板子（算法模板）
+## 🧰 板子（算法模板）
 
 > 见 **[板子/README.md](板子/README.md)**（本仓库自带，不进入上方题解列表）。按知识点整理的可复用 C++17 模板，含基础/数学/数据结构/图论/字符串/搜索/DP/杂项，每个文件夹一个 `.cpp`，均带演示 `main()` 且可独立编译。
 
@@ -55,8 +80,7 @@ g++ -std=c++17 -O2 "板子/数据结构/线段树.cpp" -o main && ./main
 
 ```bash
 # 以 P1162 为例：编译 + 运行
-g++ -std=c++17 -O2 "dfs/P1162 填涂颜色.cpp" -o main
-./main
+g++ -std=c++17 -O2 "dfs/P1162 填涂颜色.cpp" -o main && ./main
 ```
 
 ## 环境
@@ -65,9 +89,13 @@ g++ -std=c++17 -O2 "dfs/P1162 填涂颜色.cpp" -o main
 - 平台：洛谷（luogu.com.cn）
 - CI：GitHub Actions 自动编译检查仓库内所有 `.cpp` 文件，绿勾 = 编译通过
 
-## 刷题计划
+## 🎯 训练计划
 
-- [ ] BFS 基础
-- [ ] 最短路（Dijkstra / Floyd）
-- [ ] 动态规划入门
-- [ ] 字符串与数据结构
+> 按主线推进，详细题单见各文档。
+
+| 主线 | 计划 | 题单 / 进度 |
+| --- | --- | --- |
+| **动态规划** | 线性DP → 背包 → LIS → 区间 / 记忆化 | [dp题单.md](dp题单.md) |
+| **图论** | 存图 → 最短路 → 生成树 → 拓扑 → 缩点 → 建模 | [图论建图打卡.md](图论建图打卡.md) |
+| **竞赛** | 百度之星预选赛（9.19）→ CF / ICPC | [百度之星冲刺/README.md](百度之星冲刺/README.md) |
+| **备战** | CF 1058 → 1600 提升路线 | [CF刷题路线.md](../ACM学习/CF刷题路线.md) |
