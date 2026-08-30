@@ -7,6 +7,8 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
+                "-std=c++17",
+                "-Wall",
                 "${file}",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
@@ -21,7 +23,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "调试器生成的任务。"
+            "detail": "编译当前 C++ 文件（含 -g，供 gdb 调试）"
         }
     ],
     "version": "2.0.0"
