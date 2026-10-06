@@ -150,6 +150,10 @@ const html = `<!DOCTYPE html>
   .toc-group a{color:#444;text-decoration:none;font-size:13px}
   .toc-group a:hover{color:var(--acc)}
   .toc-layout{display:grid;grid-template-columns:280px 1fr;gap:22px;margin-top:22px}
+  /* 打印文字目录：默认隐藏（屏幕），仅打印时显示。
+     注意：必须放在 @media print 之前定义，否则同为 .print-toc 时后面的
+     基础 display:none 会因源码顺序在打印时覆盖 display:block，导致打印没有目录。 */
+  .print-toc{display:none;margin-top:16px;font-size:12px}
   /* 打印 */
   @media print{
     @page{size:A4;margin:14mm 12mm}
@@ -157,16 +161,14 @@ const html = `<!DOCTYPE html>
     .wrap{max-width:none;padding:0}
     .mast{border-bottom-width:1px}
     .toc-layout{display:block}
-    .toc{display:none}   /* 打印时隐藏目录，改用首页文字目录 */
-    .print-toc{display:block}
+    .toc{display:none}   /* 打印时隐藏屏幕侧边目录 */
+    .print-toc{display:block}  /* 打印时改用首页文字目录 */
     section.tpl{page-break-before:always;margin:0 0 14mm;border:1px solid #ccc;break-inside:avoid}
     section.tpl:first-of-type{page-break-before:auto}
     pre{font-size:8pt;line-height:1.4}
     pre code{white-space:pre-wrap;word-break:break-word}
     a{color:inherit}
   }
-  .print-toc{display:none;margin-top:16px;font-size:12px}
-  @media not print{.print-toc{display:none}}
 </style>
 </head>
 <body>
