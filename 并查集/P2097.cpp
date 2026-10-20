@@ -5,7 +5,7 @@ const int N = 100005;
 int fa[N];
 
 int find(int x) {
-    return fa[x] == x ? x : fa[x] = find(fa[x]);   // 路径压缩
+    return fa[x] == x ? x : fa[x] = find(fa[x]);  
 }
 
 int main() {
