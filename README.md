@@ -27,10 +27,10 @@
 
 | 指标 | 数值 |
 | --- | --- |
-| 已收录题目 | 16 |
-| 分类数 | 6 |
-| 题解文件数 | 18 |
-| 板子模板数 | 45 |
+| 已收录题目 | 19 |
+| 分类数 | 7 |
+| 题解文件数 | 21 |
+| 板子模板数 | 53 |
 
 
 ## 仓库结构
@@ -43,7 +43,8 @@
 ├── dfs/         # DFS相关题解（3 题）
 ├── dp/          # DP相关题解（6 题）
 ├── 图论/          # 图论相关题解（6 题）
-├── 并查集/         # 并查集相关题解（1 题）
+├── 并查集/         # 并查集相关题解（2 题）
+├── 拓扑排序/        # 拓扑排序相关题解（2 题）
 ├── 逆元/          # 逆元相关题解（1 题）
 ├── gen-readme.js # README 自动生成脚本（新增题目后运行）
 └── .github/      # CI 工作流（编译检查 + 自动更新 README）
@@ -59,6 +60,7 @@
 | [P121 数字三角形Number Triangles](https://www.luogu.com.cn/problem/P121) | DP | [DP版](dp/P121%20%E6%95%B0%E5%AD%97%E4%B8%89%E8%A7%92%E5%BD%A2Number%20Triangles.cpp) | ✅ 已完成 |
 | [P1004 [NOIP 2000 提高组] 方格取数](https://www.luogu.com.cn/problem/P1004) | DP | [DP版](dp/P1004%20%5BNOIP%202000%20%E6%8F%90%E9%AB%98%E7%BB%84%5D%20%E6%96%B9%E6%A0%BC%E5%8F%96%E6%95%B0.cpp) | ✅ 已完成 |
 | [P1037 [NOIP 2002 普及组] 产生数](https://www.luogu.com.cn/problem/P1037) | DFS | [DFS版](dfs/P1037%20%5BNOIP%202002%20%E6%99%AE%E5%8F%8A%E7%BB%84%5D%20%E4%BA%A7%E7%94%9F%E6%95%B0.cpp) | ✅ 已完成 |
+| [P1111 修复公路](https://www.luogu.com.cn/problem/P1111) | 并查集 | [并查集版](%E5%B9%B6%E6%9F%A5%E9%9B%86/P1111%20%E4%BF%AE%E5%A4%8D%E5%85%AC%E8%B7%AF.cpp) | ✅ 已完成 |
 | [P1115 最大子段和](https://www.luogu.com.cn/problem/P1115) | DP | [DP版](dp/P1115%20%E6%9C%80%E5%A4%A7%E5%AD%90%E6%AE%B5%E5%92%8C.cpp) | ✅ 已完成 |
 | [P1162 填涂颜色](https://www.luogu.com.cn/problem/P1162) | DFS | [DFS版](dfs/P1162%20%E5%A1%AB%E6%B6%82%E9%A2%9C%E8%89%B2.cpp) | ✅ 已完成 |
 | [P1198](https://www.luogu.com.cn/problem/P1198) | 图论/线段树 | [图论/线段树版](%E5%9B%BE%E8%AE%BA/%E7%BA%BF%E6%AE%B5%E6%A0%91/P1198.cpp) | ✅ 已完成 |
@@ -66,10 +68,12 @@
 | [P1433 吃奶酪](https://www.luogu.com.cn/problem/P1433) | DFS / dp/状压dp | [DFS版](dfs/P1433%20%E5%90%83%E5%A5%B6%E9%85%AA.cpp) · [dp/状压dp版](dp/%E7%8A%B6%E5%8E%8Bdp/P1433%20%E5%90%83%E5%A5%B6%E9%85%AA.cpp) | ✅ 已完成 |
 | [P2034](https://www.luogu.com.cn/problem/P2034) | 图论/线段树 | [图论/线段树版](%E5%9B%BE%E8%AE%BA/%E7%BA%BF%E6%AE%B5%E6%A0%91/P2034.cpp) | ✅ 已完成 |
 | [P2097 资料分发 1](https://www.luogu.com.cn/problem/P2097) | BFS / 并查集 | [BFS版](bfs/P2097%20%E8%B5%84%E6%96%99%E5%88%86%E5%8F%91%201.cpp) · [并查集版](%E5%B9%B6%E6%9F%A5%E9%9B%86/P2097.cpp) | ✅ 已完成 |
+| [P2661](https://www.luogu.com.cn/problem/P2661) | 拓扑排序 | [拓扑排序版](%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/P2661.cpp) | ✅ 已完成 |
 | [P3811 【模板】模意义下的乘法逆元](https://www.luogu.com.cn/problem/P3811) | 逆元 | [逆元版](%E9%80%86%E5%85%83/P3811%20%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%A8%A1%E6%84%8F%E4%B9%89%E4%B8%8B%E7%9A%84%E4%B9%98%E6%B3%95%E9%80%86%E5%85%83.cpp) | ✅ 已完成 |
 | [P3879 [TJOI2010] 阅读理解](https://www.luogu.com.cn/problem/P3879) | 图论/字典树 | [图论/字典树版](%E5%9B%BE%E8%AE%BA/%E5%AD%97%E5%85%B8%E6%A0%91/P3879%20%5BTJOI2010%5D%20%E9%98%85%E8%AF%BB%E7%90%86%E8%A7%A3.cpp) | ✅ 已完成 |
 | [P3916 图的遍历](https://www.luogu.com.cn/problem/P3916) | 图论 | [图论版](%E5%9B%BE%E8%AE%BA/P3916%20%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86.cpp) | ✅ 已完成 |
 | [P5318 查找文献(洛谷【深基18.例3】)](https://www.luogu.com.cn/problem/P5318) | 图论 | [图论版](%E5%9B%BE%E8%AE%BA/P5318%20%E6%9F%A5%E6%89%BE%E6%96%87%E7%8C%AE(%E6%B4%9B%E8%B0%B7%E3%80%90%E6%B7%B1%E5%9F%BA18.%E4%BE%8B3%E3%80%91).cpp) | ✅ 已完成 |
+| [P6154](https://www.luogu.com.cn/problem/P6154) | 拓扑排序 | [拓扑排序版](%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/P6154.cpp) | ✅ 已完成 |
 | [P11430 [COCI 20242025 #2] 游戏](https://www.luogu.com.cn/problem/P11430) | DP | [DP版](dp/P11430%20%5BCOCI%2020242025%20#2%5D%20%E6%B8%B8%E6%88%8F.cpp) | ✅ 已完成 |
 | [P14746](https://www.luogu.com.cn/problem/P14746) | DP | [DP版](dp/P14746.cpp) | ✅ 已完成 |
 
